@@ -14,16 +14,26 @@ def handle_events():
         if event.type == SDL_QUIT:
             running = False
         elif event.type == SDL_KEYDOWN:
-            pass
+            if event.key == SDLK_RIGHT:
+                dir += 1
+            elif event.key == SDLK_LEFT:
+                dir -= 1
+            elif event.key == SDL_QUIT:
+                running = False
         elif event.type == SDL_KEYUP:
             pass
 
+running = True
+x = 100 #임시 값
+dir = 0
+
 while running:
-    character.clip_draw(frame * 215 + 350, 560, 100, 115, 200, 200)
+    character.clip_draw(frame * 215 + 350, 560, 100, 115, x, 200)
     # character.clip_draw(left,bottom,width,height,x,y)
     update_canvas()
     handle_events()
     frame = (frame + 1) % 5
+    x += dir * 5
     delay(0.05)
 
 close_canvas()
