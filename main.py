@@ -1,13 +1,15 @@
 from pico2d import *
 
-open_canvas()
+TUK_X, TUK_Y = 1280, 1024
+open_canvas(TUK_X, TUK_Y)
 
-grass = load_image('grass.png')
+ground = load_image('TUK_GROUND.png')
 character = load_image('2d-fantasy-elf.jpg')
 
 frame = 0
-max_X, min_x = 800, 0
-max_Y, min_Y = 600, 0
+max_X, min_x = TUK_X - 100, TUK_X
+max_Y, min_Y = TUK_Y - 115, TUK_Y
+
 def handle_events():
     global running, dir_X, dir_Y #실행, 움직임 방향
     events = get_events()
@@ -40,6 +42,7 @@ dir_X, dir_Y = 0, 0 #x,y 방향
 x, y = max_X // 2, max_Y // 2  # x, y축 위치
 
 while running:
+    ground.draw(TUK_X // 2, TUK_Y // 2)
     character.clip_draw(frame * 215 + 350, 560, 100, 115, x, y)
     # character.clip_draw(left,bottom,width,height,x,y)
     update_canvas()
