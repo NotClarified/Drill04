@@ -7,8 +7,8 @@ ground = load_image('TUK_GROUND.png')
 character = load_image('2d-fantasy-elf.jpg')
 
 frame = 0
-max_X, min_x = TUK_X - 100, TUK_X
-max_Y, min_Y = TUK_Y - 115, TUK_Y
+max_X, min_X = TUK_X - 100, 50
+max_Y, min_Y = TUK_Y - 115, 70
 
 def handle_events():
     global running, dir_X, dir_Y #실행, 움직임 방향
@@ -50,8 +50,8 @@ while running:
     frame = (frame + 1) % 5
     x += dir_X * 5
     y += dir_Y * 5
-    if x > max_X or x < min_x:
+    if x > max_X or x < min_X:
         dir_X = 0
-    if y > max_Y or y < min_Y:
+    elif y > max_Y or y < min_Y:
         dir_Y = 0
     delay(0.05)
