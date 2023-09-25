@@ -42,6 +42,7 @@ dir_X, dir_Y = 0, 0 #x,y 방향
 x, y = max_X // 2, max_Y // 2  # x, y축 위치
 
 while running:
+    clear_canvas()
     ground.draw(TUK_X // 2, TUK_Y // 2)
     character.clip_draw(frame * 215 + 350, 560, 100, 115, x, y)
     # character.clip_draw(left,bottom,width,height,x,y)
