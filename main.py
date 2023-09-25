@@ -6,7 +6,7 @@ grass = load_image('grass.png')
 character = load_image('2d-fantasy-elf.jpg')
 
 frame = 0
-
+max_X, min_x = 800, 0
 def handle_events():
     global running, dir #실행, 움직임 방향
     events = get_events()
@@ -18,14 +18,17 @@ def handle_events():
                 dir += 1
             elif event.key == SDLK_LEFT:
                 dir -= 1
-            elif event.key == SDL_QUIT:
+            elif event.key == SDL_QUIT:\
                 running = False
         elif event.type == SDL_KEYUP:
-            pass
+            if event.key == SDLK_RIGHT:
+                dir -= 1
+            elif event.key == SDLK_LEFT:
+                dir += 1
 
 running = True
-x = 100 #임시 값
 dir = 0
+x = max_X // 2  # x축 위치
 
 while running:
     character.clip_draw(frame * 215 + 350, 560, 100, 115, x, 200)
@@ -34,6 +37,6 @@ while running:
     handle_events()
     frame = (frame + 1) % 5
     x += dir * 5
+    if x > max_X or x < min_x:
+        dir = 0
     delay(0.05)
-
-close_canvas()
